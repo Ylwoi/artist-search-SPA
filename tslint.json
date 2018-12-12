@@ -1,3 +1,4 @@
+// tslint:disable:no-console
 {
   "extends": ["tslint:recommended", "tslint-react", "tslint-config-prettier"],
   "linterOptions": {
@@ -6,5 +7,9 @@
       "node_modules/**/*.ts",
       "coverage/lcov-report/*.js"
     ]
-  }
+  },
+  "rules": {
+        "no-console": false
+    }
+
 }
