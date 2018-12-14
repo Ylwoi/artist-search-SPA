@@ -32,19 +32,21 @@ class App extends React.Component<{}, ISearchStates> {
   }
   public showArtists (artists: any[]) {
     const searchResultsDiv = document.getElementsByClassName("search-results")[0];
-    console.log(searchResultsDiv);
     artists.forEach( (artist) => {
-      const div = document.createElement("div");
-      div.setAttribute('class', 'artist-result');
-      const p = document.createElement("p");
-      p.setAttribute('id', artist.artistId);
-      p.innerText = artist.artistName;
-      div.appendChild(p);
-      searchResultsDiv.appendChild(div);
+      const artistDiv = document.createElement("div");
+      const artistButton = document.createElement("p");
 
-      console.log(artist);
-
+      artistDiv.setAttribute('class', 'artist-result');
+      artistButton.setAttribute('class', 'artist-button');
+      artistButton.setAttribute('id', artist.artistId);
+      artistButton.onclick = () => { this.showAlbums(artist.artistId) }
+      artistButton.innerText = artist.artistName;
+      artistDiv.appendChild(artistButton);
+      searchResultsDiv.appendChild(artistDiv);
     })
+  }
+  public showAlbums (artistID: string) {
+    console.log(artistID);
   }
   public updateValue (evt: any) {
     this.setState({searchText: evt.target.value});
