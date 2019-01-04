@@ -34,13 +34,14 @@ class Albums extends React.Component<any, any> {
     }
     console.log(albums);
     albums.forEach( (album) => {
-      const albumDiv = document.createElement("div");
-      const albumName = document.createElement("p");
+      const albumDiv = document.createElement("figure");
+      const albumName = document.createElement("figcaption");
       const albumPic = document.createElement("img");
 
-      albumDiv.setAttribute('class', 'album-result');
-      albumName.setAttribute('class', 'artist-button');
+      albumDiv.setAttribute('class', 'column is-narrow columns is-2 is-multiline is-vcentered');
+      albumName.setAttribute('class', 'column is-narrow is-11 is-centered');
       albumName.innerText = album.collectionName;
+      albumPic.setAttribute('class', 'column is-narrow is-11');
       albumPic.setAttribute('src', album.artworkUrl100);
 
       albumDiv.appendChild(albumPic);
@@ -51,10 +52,17 @@ class Albums extends React.Component<any, any> {
 
   public render() {
     return (
-      <div>
-        <h1>Albums</h1>
-        <a className="back-button" onClick={this.props.goBack}>Back to artist search</a>
-        <div className="album-results"/>
+      <div className="columns is-multiline is-centered is-mobile">
+        <p className="albums-title title is-1 is-spaced">{this.props.artistName}'s All Albums</p>
+        <div className="album-results columns is-multiline is-centered"/>
+        <div className="column is-narrow is-full">
+          <a className="button" onClick={this.props.goBack}>
+            <span className="icon">
+              <i className="fas fa-home"></i>
+            </span>
+            <span>Back to artist search</span>
+          </a>
+        </div>
       </div>
     );
   }

@@ -1,5 +1,10 @@
-.back-button {
-  color: blue;
-  border: solid 2px;
-  cursor: pointer;
+@font-face {
+  font-family: lcdFont;
+  src: url('/digital-7.woff') format('woff');
+}
+
+.albums-title {
+  color: orange;
+  margin: .5em;
+  font-family: lcdFont, sans-serif;
 }

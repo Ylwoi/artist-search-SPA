@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+import { Button } from "react-bulma-components/full";
+
 import Albums from './Albums';
 import './App.css';
 
@@ -47,11 +49,10 @@ class App extends React.Component<any, IStates> {
     }
     artists.forEach( (artist) => {
       const artistDiv = document.createElement("div");
-      const  artistButton = document.createElement('p');
+      const  artistButton = document.createElement('a');
 
-      artistDiv.setAttribute('class', 'artist-result');
-      artistButton.setAttribute('class', 'artist-button');
-      artistButton.setAttribute('id', artist.artistId);
+      artistDiv.setAttribute('class', 'column is-narrow');
+      artistButton.setAttribute('class', 'button is-info is-large is-outlined');
       artistButton.onclick = () => { this.setAlbumsView(artist.artistName) }
       artistButton.innerText = artist.artistName;
       artistDiv.appendChild(artistButton);
@@ -72,12 +73,15 @@ class App extends React.Component<any, IStates> {
   public render() {
     if (!this.state.albumsView) {
       return (
-        <div>
-          <div className="artist-search-div">
-            <input type="text" onChange={this.updateValue}/>
-            <button onClick={this.searchArtist}>Search</button>
-            <div className="search-results"/>
+        <div className="columns is-multiline is-centered is-mobile">
+          <p className="main-title title is-spaced">SEARCH ARTISTS'S ALL ALBUMS</p>
+          <div className="column is-8 is-narrow">
+            <input className="input is-primary is-rounded is-medium" type="text" onChange={this.updateValue}/>
           </div>
+          <div className="column is-narrow">
+            <Button color="danger" size="medium" onClick={this.searchArtist}>Search</Button>
+          </div>
+          <div className="columns is-multiline is-four-fifths is-narrow is-centered is-mobile search-results"/>
         </div>
       );
     } else {
